@@ -1,0 +1,46 @@
+-- ----------------------------------------------------------
+-- Script MYSQL pour mcd 
+-- ----------------------------------------------------------
+
+
+-- ----------------------------
+-- Table: Station
+-- ----------------------------
+CREATE TABLE Station (
+  id_station_itinerance VARCHAR(50) NOT NULL,
+  nom_station VARCHAR(150) NOT NULL,
+  adresse_station VARCHAR(150) NOT NULL,
+  implantation_station VARCHAR(150) NOT NULL,
+  id_station_local VARCHAR(50) NOT NULL,
+  code_insee_commune VARCHAR(5) NOT NULL,
+  nbre_pdc INT NOT NULL,
+  created_at DATETIME NOT NULL,
+  nom_enseigne VARCHAR(150) NOT NULL,
+  CONSTRAINT Station_PK PRIMARY KEY (id_station_itinerance)
+)ENGINE=InnoDB;
+
+
+-- ----------------------------
+-- Table: Point_de_charge
+-- ----------------------------
+CREATE TABLE Point_de_charge (
+  id_pdc_itinerance VARCHAR(50) NOT NULL,
+  puissance_nominale FLOAT NOT NULL,
+  horaires VARCHAR(50) NOT NULL,
+  nom_operateur VARCHAR(150) NOT NULL,
+  consolidated_latitude FLOAT NOT NULL,
+  consolidated_longitude FLOAT NOT NULL,
+  id_pdc_local VARCHAR(50) NOT NULL,
+  created_at DATETIME NOT NULL,
+  tarification FLOAT NOT NULL,
+  condition_acces VARCHAR(500) NOT NULL,
+  prise_type_2 TINYINT(1) NOT NULL,
+  prise_type_ef TINYINT(1) NOT NULL,
+  prise_type_combo_ccs TINYINT(1) NOT NULL,
+  prise_type_chademo TINYINT(1) NOT NULL,
+  prise_type_autre TINYINT(1) NOT NULL,
+  id_station_itinerance VARCHAR(50) NOT NULL,
+  CONSTRAINT Point_de_charge_PK PRIMARY KEY (id_pdc_itinerance),
+  CONSTRAINT Point_de_charge_id_station_itinerance_FK FOREIGN KEY (id_station_itinerance) REFERENCES Station (id_station_itinerance)
+)ENGINE=InnoDB;
+
