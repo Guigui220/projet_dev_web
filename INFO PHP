@@ -1,0 +1,8 @@
+<?php
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=a_maroui;charset=utf8mb4', 'a_maroui', 'ZgOE90ELqwxQ2LWJ');
+$deps = $pdo->query('SELECT DISTINCT RIGHT(code_insee_commune, 2) AS dep FROM station ORDER BY dep')->fetchAll();
+echo json_encode($deps);
+
+
+ID : a_maroui
+MDP : ZgOE90ELqwxQ2LWJ
